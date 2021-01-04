@@ -1,10 +1,23 @@
-def start_pipeline(dataframe):
-    return dataframe.copy()
+from typing import Dict, List
+import numpy as np
+
+import pandas as pd
 
 
-def drop_noisy_columns(datafram, cols):
-    return datafram.drop(columns=cols)
+def start_pipeline(df: pd.DataFrame) -> pd.DataFrame:
+    return df.copy()
 
 
-def convert_column_dtypes(datafram, dtypes_mapping):
-    return datafram.astype(dtypes_mapping)
+def drop_noisy_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
+    return df.drop(columns=cols)
+
+
+def replace_empty_strings_with_nan(df: pd.DataFrame) -> pd.DataFrame:
+    empty_string_pattern: str = r"^\s*$"
+    return df.replace(to_replace=empty_string_pattern, value=np.nan, regex=True)
+
+
+def convert_column_dtypes(
+    df: pd.DataFrame, dtypes_mapping: Dict[str, str]
+) -> pd.DataFrame:
+    return df.astype(dtypes_mapping)
