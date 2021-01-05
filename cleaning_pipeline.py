@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Any, Dict, List
 import numpy as np
 
 import pandas as pd
@@ -19,6 +19,13 @@ def replace_empty_strings_with_nan(df: pd.DataFrame) -> pd.DataFrame:
 
 def drop_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     return df.dropna()
+
+
+def map_column_values(
+    df: pd.DataFrame, col: str, mapping_dict: Dict[Any, Any]
+) -> pd.DataFrame:
+    df[col] = df[col].map(mapping_dict)
+    return df
 
 
 def convert_column_dtypes(
