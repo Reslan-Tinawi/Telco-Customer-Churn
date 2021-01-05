@@ -17,6 +17,10 @@ def replace_empty_strings_with_nan(df: pd.DataFrame) -> pd.DataFrame:
     return df.replace(to_replace=empty_string_pattern, value=np.nan, regex=True)
 
 
+def drop_missing_values(df: pd.DataFrame) -> pd.DataFrame:
+    return df.dropna()
+
+
 def convert_column_dtypes(
     df: pd.DataFrame, dtypes_mapping: Dict[str, str]
 ) -> pd.DataFrame:
